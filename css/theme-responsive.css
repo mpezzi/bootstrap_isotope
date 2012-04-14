@@ -38,9 +38,7 @@
 }
 
 @media (min-width: 980px) {
-  header div.actions {
-    margin-top: -9px;
-  }
+
 }
 
 @media (min-width: 1200px) {

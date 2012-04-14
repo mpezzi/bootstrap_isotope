@@ -6,6 +6,10 @@
 
 /* Hero
 ------------------------------- */
+header .page-header {
+  padding-bottom: 15px;
+}
+
 header p.lead {
   margin-bottom: 0;
 }
@@ -14,18 +18,23 @@ header div.actions {
   margin-top: 9px;
 }
 
+header div.actions .btn-toolbar {
+  margin-bottom: 0;
+}
+
 /* Posts
 ------------------------------- */
 .post h4 {
   margin-bottom: 9px;
 }
 
-.post p.description {
-  margin-bottom: 0;
+.post h4 a {
+  color: #333;
 }
 
 .post img.image {
   max-width: 100%;
+  margin-top: 9px;
 }
 
 /* Isotope Transitions
