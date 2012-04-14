@@ -23,44 +23,40 @@ $(function(){
     $('#subreddit span.subreddit').text(subreddit);
 
     $.reddit({ subreddit: subreddit, limit: limit }, function(data){
-      if ( data.length > 0 ) {
-        // Append data to posts using the #post template.
-        $('#post').tmpl(data).appendTo($posts);
 
-        // Isotopize the posts.
-        $posts.isotope({
-          itemSelector : '.item'
-        });
+      // Append data to posts using the #post template.
+      $('#post').tmpl(data).appendTo($posts);
 
-        // Append images to posts.
-        setTimeout(function(){
-          $.each(data, function(i, post){
-            if ( typeof post.url !== 'undefined' && post.url.indexOf('.jpg') != -1 ) {
-              $('<img class="image">').attr('src', post.url).wrap('<div class="image">').load(function(){
-                $(this).appendTo('#' + post.id + ' div.well').slideDown(function(){
-                  $posts.isotope('reLayout');
-                });
+      // Isotopize the posts.
+      $posts.isotope({
+        itemSelector : '.item'
+      });
+
+      // Look for images and append to posts after isotope has initiated
+      setTimeout(function(){
+        $.each(data, function(i, post){
+          if ( typeof post.url !== 'undefined' && post.url.indexOf('.jpg') != -1 ) {
+            $('<img class="image">').attr('src', post.url).wrap('<div class="image">').load(function(){
+              $(this).appendTo('#' + post.id + ' div.well').slideDown(function(){
+                $posts.isotope('reLayout');
               });
-            }
-          });
-        }, 2500);
-      }
-      else {
-        $('<div class="alert">').text('No posts found in subreddit.').appendTo($posts);
-      }
+            });
+          }
+        });
+      }, 2500);
+
     });
   }
 
   function clear() {
-    $posts.children().fadeOut(function(){
-      $posts.isotope('destroy').empty();
-    });
+    $posts.isotope('destroy').empty();
   }
 
   function reLayout(mql) {
     $posts.isotope('reLayout');
   }
 
+  // Load front page of reddit on load.
   load(location.hash.replace('#', ''), 50);
 
 });
