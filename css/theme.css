@@ -6,17 +6,26 @@
 
 /* Hero
 ------------------------------- */
-header.hero-unit {
-  margin-bottom: 20px;
+header p.lead {
+  margin-bottom: 0;
+}
+
+header div.actions {
+  margin-top: 9px;
 }
 
 /* Posts
 ------------------------------- */
-.post h3 {
+.post h4 {
   margin-bottom: 9px;
-  font-size: 16px;
-  line-height: 22px;
-  font-weight: 300;
+}
+
+.post p.description {
+  margin-bottom: 0;
+}
+
+.post img.imgur {
+  max-width: 100%;
 }
 
 /* Isotope Transitions
