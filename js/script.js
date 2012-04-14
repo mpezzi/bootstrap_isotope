@@ -1,50 +1,28 @@
 $(function(){
 
-  var $reddit = $('#reddit');
+  var $posts = $('#posts');
 
-  $reddit.reddit({
-    complete: function() {
-      $reddit.isotope({
-        itemSelector : '.item'
-      });
-    }
+  // Pull a list of posts from reddit
+  $.reddit({ subreddit: '', limit: 20 }, function(data){
+
+    // Append data to posts using the #post template.
+    $('#post').tmpl(data).appendTo($posts);
+
+    // Isotopize the posts.
+    $posts.isotope({
+      itemSelector : '.item'
+    });
+
   });
 
+  // Fire events on specific media query layout changes.
   mql('all and (max-width: 480px)', reLayout);
   mql('all and (max-width: 768px)', reLayout);
   mql('all and (min-width: 980px)', reLayout);
   mql('all and (min-width: 1200px)', reLayout);
 
   function reLayout(mql) {
-    $reddit.isotope('reLayout');
+    $posts.isotope('reLayout');
   }
 
 });
-
-mql = (function(doc, undefined){
-  var bool,
-      docElem  = doc.documentElement,
-      refNode  = docElem.firstElementChild || docElem.firstChild,
-      idCounter = 0;
-
-  return function(q, cb){
-    var id = 'mql-' + idCounter++,
-        callback = function() {
-          cb({ matches: (div.offsetWidth == 42), media: q });
-        },
-        div = doc.createElement('div');
-
-        div.className = 'mq';
-        div.style.cssText = "position:absolute;top:-100em";
-        div.id = id;
-        div.innerHTML = '&shy;<style media="'+q+'"> #'+id+' { width: 42px; }</style>';
-
-        div.addEventListener('webkitTransitionEnd', callback, false);
-        div.addEventListener('transitionend', callback, false); //Firefox
-        div.addEventListener('oTransitionEnd', callback, false); //Opera
-
-        docElem.insertBefore(div, refNode);
-        //don't delete the div, we need to listen to events
-        return { matches: div.offsetWidth == 42, media: q };
-  };
-})(document);

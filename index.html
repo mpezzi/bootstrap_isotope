@@ -32,8 +32,8 @@
     </p>
   </header>
 
-  <div id="reddit" class="isotope isotope-reddit row">
-
+  <div id="posts" class="isotope row">
+    <!-- Posts will go here ... -->
   </div>
 
 </div>
@@ -42,15 +42,14 @@
 <script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="js/jquery.isotope.min.js"></script>
+<script src="js/mql.js"></script>
 <script src="js/reddit.js"></script>
 <script src="js/script.js"></script>
 
-<script id="reddit-post" type="text/x-jquery-tmpl">
+<script id="post" type="text/x-jquery-tmpl">
   <div class="post item span4">
     <div class="well">
-      <h3>
-        <a href="http://reddit.com${permalink}">${title}</a>
-      </h3>
+      <h3><a href="${permalink_absolute}">${title}</a></h3>
       <div class="btn-group">
         <button class="btn btn-mini score">${score}</button>
         <button class="btn btn-mini author">${author}</button>
