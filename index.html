@@ -56,13 +56,16 @@
 <script src="js/script.js"></script>
 
 <script id="post" type="text/x-jquery-tmpl">
-  <div class="post item span4">
+  <div id="${id}" class="post item span4">
     <div class="well">
-      <h3><a href="${permalink_absolute}">${title}</a></h3>
-      <div class="btn-group">
-        <button class="btn btn-mini btn-inverse score">${score}</button>
-        <button class="btn btn-mini author">${author}</button>
-      </div>
+      <h4>
+        <a href="${permalink_absolute}">${title}</a>
+      </h4>
+      <p>
+        <span class="badge">${score}</span>
+        <span class="badge">r/${subreddit}</span>
+      </p>
+      <p class="description"></p>
     </div>
   </div>
 </script>
