@@ -20,12 +20,20 @@
 
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 980px) {
-
+  #posts .span4 {
+    width: 352px;
+  }
 }
 
 /* Large desktop */
 @media (min-width: 980px) {
   header div.actions {
     margin-top: -9px;
+  }
+}
+
+@media (min-width: 1200px) {
+  #posts .span4 {
+    width: 270px;
   }
 }
