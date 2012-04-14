@@ -45,3 +45,14 @@ header.hero-unit {
        -o-transition-property:         top, left, opacity;
           transition-property:         transform, opacity;
 }
+
+/* JavaScript event trig­gered by media query rules
+   @see: http://www.paulrhayes.com/2011-11/use-css-transitions-to-link-media-queries-and-javascript/
+------------------------------- */
+.mq {
+  -webkit-transition: width 0.001ms;
+  -moz-transition: width 0.001ms;
+  -o-transition: width 0.001ms;
+  transition: width 0.001ms;
+  width: 0;
+}

@@ -6,11 +6,10 @@
 /* Landscape phone to portrait tablet */
 @media (max-width: 768px) {
   .isotope .item {
-    margin-right: 20px;
-  }
-
-  .isotope .item p {
-    display: none;
+    position: static ! important;
+    -webkit-transform: translate(0px, 0px) ! important;
+       -moz-transform: translate(0px, 0px) ! important;
+            transform: translate(0px, 0px) ! important;
   }
 }
 
