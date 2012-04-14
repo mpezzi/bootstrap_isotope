@@ -13,6 +13,19 @@ $(function(){
       itemSelector : '.item'
     });
 
+    // Append images to posts.
+    setTimeout(function(){
+      $.each(data, function(i, post){
+        if ( typeof post.url !== 'undefined' && post.url.indexOf('imgur.com') != -1 && post.url.indexOf('.jpg') != -1 ) {
+          $('<img class="imgur">').attr('src', post.url).load(function(){
+            $(this).appendTo('#' + post.id + ' p.description').slideDown(function(){
+              $posts.isotope('reLayout');
+            });
+          });
+        }
+      });
+    }, 2500);
+
   });
 
   // Fire events on specific media query layout changes.
