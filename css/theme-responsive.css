@@ -1,10 +1,17 @@
-/* Landscape phones and down */
 @media (max-width: 480px) {
 
 }
 
-/* Landscape phone to portrait tablet */
 @media (max-width: 768px) {
+  header h1 small {
+    display: block;
+  }
+
+  header div.description {
+    padding-top: 9px;
+    padding-bottom: 4px;
+  }
+
   .isotope .item {
     position: static ! important;
     -webkit-transform: translate(0px, 0px) ! important;
@@ -13,19 +20,23 @@
   }
 }
 
-/* Landscape phone to portrait tablet */
+@media (max-width: 980px) {
+  header p.lead span {
+    display: block;
+  }
+}
+
 @media (min-width: 480px) and (max-width: 768px) {
 
 }
 
-/* Portrait tablet to landscape and desktop */
+
 @media (min-width: 768px) and (max-width: 980px) {
   #posts .span4 {
     width: 352px;
   }
 }
 
-/* Large desktop */
 @media (min-width: 980px) {
   header div.actions {
     margin-top: -9px;
