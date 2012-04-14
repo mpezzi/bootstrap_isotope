@@ -1,10 +1,17 @@
 $(function(){
 
-  var $isotope = $('#isotope');
+  var $reddit = $('#reddit');
 
-  $isotope.isotope({
-    itemSelector : '.item',
-    layoutMode : 'fitRows'
+  $reddit.reddit({
+    complete: function() {
+      $reddit.isotope({
+        itemSelector : '.item'
+      });
+    }
+  });
+
+  $(window).resize(function(){
+    $reddit.isotope('reLayout');
   });
 
 });
