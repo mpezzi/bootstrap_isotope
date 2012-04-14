@@ -3,29 +3,32 @@ $(function(){
   var $posts = $('#posts');
 
   // Pull a list of posts from reddit
-  $.reddit({ subreddit: '', limit: 50 }, function(data){
+  $.reddit({ subreddit: window.location.hash.replace('#', ''), limit: 50 }, function(data){
+    if ( data.length > 0 ) {
+      // Append data to posts using the #post template.
+      $('#post').tmpl(data).appendTo($posts);
 
-    // Append data to posts using the #post template.
-    $('#post').tmpl(data).appendTo($posts);
-
-    // Isotopize the posts.
-    $posts.isotope({
-      itemSelector : '.item'
-    });
-
-    // Append images to posts.
-    setTimeout(function(){
-      $.each(data, function(i, post){
-        if ( typeof post.url !== 'undefined' && post.url.indexOf('imgur.com') != -1 && post.url.indexOf('.jpg') != -1 ) {
-          $('<img class="imgur">').attr('src', post.url).load(function(){
-            $(this).appendTo('#' + post.id + ' p.description').slideDown(function(){
-              $posts.isotope('reLayout');
-            });
-          });
-        }
+      // Isotopize the posts.
+      $posts.isotope({
+        itemSelector : '.item'
       });
-    }, 2500);
 
+      // Append images to posts.
+      setTimeout(function(){
+        $.each(data, function(i, post){
+          if ( typeof post.url !== 'undefined' && post.url.indexOf('.jpg') != -1 ) {
+            $('<img class="image">').attr('src', post.url).load(function(){
+              $(this).prependTo('#' + post.id + ' p.description').slideDown(function(){
+                $posts.isotope('reLayout');
+              });
+            });
+          }
+        });
+      }, 2500);
+    }
+    else {
+      $('<div class="alert">').text('No posts found in subreddit.').appendTo($posts);
+    }
   });
 
   // Fire events on specific media query layout changes.
