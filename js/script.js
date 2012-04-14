@@ -3,7 +3,7 @@ $(function(){
   var $posts = $('#posts');
 
   // Pull a list of posts from reddit
-  $.reddit({ subreddit: '', limit: 20 }, function(data){
+  $.reddit({ subreddit: '', limit: 50 }, function(data){
 
     // Append data to posts using the #post template.
     $('#post').tmpl(data).appendTo($posts);
